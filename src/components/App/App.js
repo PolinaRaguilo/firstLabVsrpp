@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FormAdd from '../FormAdd/FormAdd';
+import UserList from '../UsersList/UsersList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+
+  state = {
+    dataUsers:[
+      {id:1, firstName: 'Polina', lastName: 'Raguilo', email: 'polina2020@mail.ru'},
+      {id:2, firstName: 'Ivan', lastName: 'Ivanov', email: 'Ivan2020@mail.ru'}
+    ]
+  }
+
+  render(){
+    const {dataUsers} = this.state;
+    return(
+      <div>
+        <FormAdd/>
+        <UserList data={dataUsers}/>
+      </div>
+    )
+  }
 }
 
 export default App;
