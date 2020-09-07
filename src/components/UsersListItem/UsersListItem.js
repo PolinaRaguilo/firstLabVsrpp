@@ -6,7 +6,7 @@ class UsersListItem extends React.Component{
 
   render(){
 
-    const {id, firstName, lastName, email} = this.props;
+    const {id, firstName, lastName, email, onDelete} = this.props;
 
     return(
       <tr>
@@ -14,7 +14,7 @@ class UsersListItem extends React.Component{
         <td>{firstName}</td>
         <td>{lastName}</td>
         <td>{email}</td>
-        <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <td><button type="button" class="btn btn-danger" onClick={onDelete}>Delete</button></td>
       </tr>
     )
   }

@@ -12,12 +12,27 @@ class App extends React.Component{
     ]
   }
 
+  deletePerson = (id) => {
+    this.setState(({dataUsers}) => {
+      let idToDel = dataUsers.findIndex(elem => elem.id === id);
+
+      let beforeDelItem = dataUsers.slice(0, idToDel);
+      let afterDelItem = dataUsers.slice(idToDel + 1);
+
+      let newData = [...beforeDelItem, ...afterDelItem];
+
+      return {
+        dataUsers: newData
+      }
+    }) 
+  }
+
   render(){
     const {dataUsers} = this.state;
     return(
       <div>
         <FormAdd/>
-        <UserList data={dataUsers}/>
+        <UserList data={dataUsers} onDelete={this.deletePerson}/>
       </div>
     )
   }

@@ -3,14 +3,16 @@ import React from 'react';
 import './UsersList.css';
 import UsersListItem from '../UsersListItem/UsersListItem';
 
-const UserList = ({data}) =>{
+const UserList = ({data, onDelete}) =>{
 
   let elements = data.map((item) => {
     const {id, firstName, lastName, email} = item;
 
     return (
       <UsersListItem key={id} id={id} firstName={firstName} 
-                    lastName = {lastName} email={email}/>
+                    lastName = {lastName} email={email}
+                    onDelete={() => onDelete(id)}
+                    />
     )
   })
 
