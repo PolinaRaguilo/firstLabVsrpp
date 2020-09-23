@@ -5,38 +5,61 @@ import './FormAdd.css';
 
 class FormAdd extends React.Component{
 
+  state = {
+    name: '',
+    lastName: '',
+    email:''
+  }
+
+  onInputChange = (e) => {
+   // const {name, lastName, email} = e.target.value;
+    this.setState({
+      name: document.getElementById('firstNameInput').value,
+      lastName: document.getElementById('lastNameInput').value,
+      email:  document.getElementById('emailInput').value
+    })
+    
+  }
+
+  onSubmit = (e) => {
+    const {name, lastName, email} = this.state;
+    e.preventDefault();
+    this.props.addedNewItem(name, lastName, email);
+  }
+
   render(){
     return (
       <div className="addForm">
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="form-row">
           <div className="col-auto  ">
-            <button type="button" className="btn btn-danger addBtn">
+            <button type="submit" className="btn btn-danger addBtn">
             Add User
             </button>
             </div>
             <div className="col">
-              <label for="exampleInputEmail1" >First Name</label>
+              <label for="firstNameInput" >First Name</label>
               <input
-                type="email"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="firstNameInput"
+                onChange={this.onInputChange}
               />
             </div>
             <div className="col">
-              <label for="exampleInputEmail2">Last Name</label>
+              <label for="lastNameInput">Last Name</label>
               <input
-                type="email"
                 className="form-control"
-                id="exampleInputEmail2"
+                id="lastNameInput"
+                onChange={this.onInputChange}
               />
             </div>
             <div className="col">
-              <label for="exampleInputEmail3">Email</label>
+              <label for="emailInput">Email</label>
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputEmail3"
+                id="emailInput"
+                onChange={this.onInputChange}
               />
             </div>
           </div>

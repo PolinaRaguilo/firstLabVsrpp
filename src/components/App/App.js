@@ -5,6 +5,8 @@ import UserList from '../UsersList/UsersList';
 
 class App extends React.Component{
 
+  maxId = 2;
+
   state = {
     dataUsers:[
       {id:1, firstName: 'Polina', lastName: 'Raguilo', email: 'polina2020@mail.ru'},
@@ -27,11 +29,34 @@ class App extends React.Component{
     }) 
   }
 
+  createItem(firstName, lastName, email){
+    return {
+      id: ++this.maxId, 
+      firstName: firstName, 
+      lastName: lastName, 
+      email: email
+    }
+  }
+
+  addItem = (firstName, lastName, email) => {
+    const newItem = this.createItem(firstName,lastName,email);
+
+    this.setState(({dataUsers}) => {
+      let newArr = [
+        ...dataUsers,
+        newItem
+      ]
+      return{
+        dataUsers: newArr
+      }
+    })
+  }
+
   render(){
     const {dataUsers} = this.state;
     return(
       <div>
-        <FormAdd/>
+        <FormAdd addedNewItem={this.addItem}/>
         <UserList data={dataUsers} onDelete={this.deletePerson}/>
       </div>
     )
