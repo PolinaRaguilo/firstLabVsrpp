@@ -17,8 +17,6 @@ class FormAdd extends React.Component{
     this.setState({
       [name]: value
     })
-
-    
   }
 
   onSubmit = (e) => {
