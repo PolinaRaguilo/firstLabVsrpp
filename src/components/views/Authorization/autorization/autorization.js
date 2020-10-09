@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './autorization.css';
 import {Redirect} from 'react-router-dom'
@@ -10,14 +11,13 @@ class AutorizationForm extends React.Component{
   }
 
   onInputChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+    const {name, value} = e.target;
     this.setState({
       [name]: value
     })
   }
 
-  onAuthSubmit = (e) => {
+  onAuthSubmit = () => {
     const {login, password} = this.state;
     if (login === "polina" && password === "polina2020"){
       this.setState({

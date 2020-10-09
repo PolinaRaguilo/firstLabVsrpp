@@ -1,22 +1,28 @@
 import React from 'react';
 import './App.css';
-import TablePage from '../TablePage/TablePage';
+import TablePage from '../views/TableView/TablePage/TablePage';
 import {
   Route,
-  Switch
+  Switch,
+  BrowserRouter
 } from "react-router-dom"
-import AutorizationForm from '../autorization/autorization';
+
+import AutorizationForm from '../views/Authorization/autorization/autorization';
 
 
 class App extends React.Component{
 
-  render(){
+  render(){ 
 
     return(
-      <Switch>
-          <Route exact path="/" component={AutorizationForm}/>
-          <Route exact path="/users" component={TablePage}/>
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+            <Route exact path="/" component={AutorizationForm}/>
+            <Route path="/users" component={TablePage}/>
+            <Route render={() => <h2>Page not found 404</h2>}/>
+        </Switch>
+        </BrowserRouter>
+      
     )
   }
 }
