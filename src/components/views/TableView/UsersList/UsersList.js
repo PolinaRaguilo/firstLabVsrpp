@@ -2,6 +2,9 @@ import React from 'react';
 
 import './UsersList.css';
 import UsersListItem from '../UsersListItem/UsersListItem';
+import { connect } from 'react-redux';
+import { deletePerson } from '../../../../redux/actions';
+
 
 const UserList = ({data, onDelete}) =>{
 
@@ -37,4 +40,16 @@ const UserList = ({data, onDelete}) =>{
     )
 }
 
-export default UserList;
+const mapStateToProps = (state) => {
+  return {
+    data: state.tableReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDelete: (id) => dispatch(deletePerson(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);

@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './UsersListItem.css';
-
 class UsersListItem extends React.Component{
+  
 
   render(){
 
@@ -19,5 +20,8 @@ class UsersListItem extends React.Component{
     )
   }
 }
+
+
+
 
 export default UsersListItem;
