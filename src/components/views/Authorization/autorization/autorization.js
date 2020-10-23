@@ -2,12 +2,13 @@
 import React from 'react';
 import './autorization.css';
 import {Redirect} from 'react-router-dom'
+import { logIn } from '../../../../redux/actions';
+import { connect } from 'react-redux';
 
 class AutorizationForm extends React.Component{
   state = {
     login: '',
     password: '',
-    logged: false
   }
 
   onInputChange = (e) => {
@@ -17,19 +18,19 @@ class AutorizationForm extends React.Component{
     })
   }
 
-  onAuthSubmit = () => {
+  onAuthSubmit = (e) => {
     const {login, password} = this.state;
     if (login === "polina" && password === "polina2020"){
-      this.setState({
-        logged: true
-      })
+      e.preventDefault();
+      this.props.login(true);
     } else {
+      this.props.login(false);
       alert ("Введите правильные данные")
     }
   }
 
   render(){
-    if (this.state.logged){
+    if (this.props.logInf){
       return <Redirect to="/users"/>
     }
     return(
@@ -53,4 +54,16 @@ class AutorizationForm extends React.Component{
   }
 }
 
-export default AutorizationForm;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    login: (log) => dispatch(logIn(log))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return{
+    logInf: state.authorizationReducer.logged
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AutorizationForm);

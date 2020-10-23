@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addItem } from '../../../../redux/actions';
 
 import './FormAdd.css';
 
@@ -25,6 +27,7 @@ class FormAdd extends React.Component{
     this.props.addedNewItem(firstName, lastName, email);
   }
 
+
   render(){
 
     return (
@@ -37,7 +40,7 @@ class FormAdd extends React.Component{
             </button>
             </div>
             <div className="col">
-              <label for="firstNameInput" >First Name</label>
+              <label htmlFor="firstNameInput" >First Name</label>
               <input
                 name="firstName"
                 className="form-control"
@@ -47,7 +50,7 @@ class FormAdd extends React.Component{
               />
             </div>
             <div className="col">
-              <label for="lastNameInput">Last Name</label>
+              <label htmlFor="lastNameInput">Last Name</label>
               <input
               name="lastName"
                 className="form-control"
@@ -57,7 +60,7 @@ class FormAdd extends React.Component{
               />
             </div>
             <div className="col">
-              <label for="emailInput">Email</label>
+              <label htmlFor="emailInput">Email</label>
               <input
                 name = "email"
                 type="email"
@@ -69,10 +72,16 @@ class FormAdd extends React.Component{
             </div>
           </div>
         </form>
-        
       </div>
     );
   }
 }
 
-export default FormAdd;
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addedNewItem: (firstName, lastName, email) => dispatch(addItem(firstName,lastName,email))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(FormAdd);

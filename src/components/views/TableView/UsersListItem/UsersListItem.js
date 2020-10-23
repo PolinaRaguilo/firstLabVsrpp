@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 
 import './UsersListItem.css';
 class UsersListItem extends React.Component{
@@ -15,7 +15,7 @@ class UsersListItem extends React.Component{
         <td>{firstName}</td>
         <td>{lastName}</td>
         <td>{email}</td>
-        <td><button type="button" class="btn btn-danger" onClick={onDelete}>Delete</button></td>
+        <td><button type="button" className="btn btn-danger" onClick={onDelete}>Delete</button></td>
       </tr>
     )
   }

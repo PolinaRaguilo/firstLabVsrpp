@@ -4,6 +4,8 @@ const initialState =[
   {id:2, firstName: 'Julia', lastName: 'Ivanova', email: 'Julia2020@mail.ru'}
 ]
 
+
+
 const tableReducer = (state=initialState, action) => {
   switch(action.type){
     case 'ADD_ITEM':
@@ -20,6 +22,6 @@ const tableReducer = (state=initialState, action) => {
   }
 }
 
-// return [...state.slice(0, action.id), ...state.slice(action.id + 1)]
 
-export default tableReducer;
+
+export {tableReducer} ;

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import tableReducer from './reducer';
+import { authorizationReducer } from './authorizationReducer';
+import {tableReducer} from './tableReducer';
 
 
 const mainReducer = combineReducers({
-  tableReducer
+  tableReducer, authorizationReducer
 })
 
 export default mainReducer;
+
