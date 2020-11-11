@@ -1,26 +1,45 @@
 import React from 'react';
 
+import MaterialTable from 'material-table';
+
 import './UsersList.css';
 import UsersListItem from '../UsersListItem/UsersListItem';
 import { connect } from 'react-redux';
-import { deletePerson } from '../../../../redux/actions';
+import { deletePerson, editPersonTrue } from '../../../../redux/actions';
 
 
-const UserList = ({data, onDelete}) =>{
 
-  let elements = data.map((item) => {
-    const {id, firstName, lastName, email} = item;
+class UserList extends React.Component{
 
-    return (
-      <UsersListItem key={id} id={id} firstName={firstName} 
-                    lastName = {lastName} email={email}
-                    onDelete={() => onDelete(id)}
-                    />
-    )
-  })
+  state = {
+    users: [
+      {id:1, firstName: 'Polina', lastName: 'Raguilo', email: 'polina2020@mail.ru', birthCity:222},
+      {id:2, firstName: 'Julia', lastName: 'Ivanova', email: 'Julia2020@mail.ru', birthCity:111},
+      {id:3, firstName: 'Ivan', lastName: 'Ivanov', email: 'ivan2020@mail.ru', birthCity:111}
+    ]
+  }
 
-    return(
-      <div>
+
+  
+
+  render(){
+    const {data,rgr, onDelete, onOpenModal} = this.props;
+
+    let elements = data.map((item) => {
+      const {id, firstName, lastName, email} = item;
+  
+      return (
+        <UsersListItem key={id} id={id} firstName={firstName} 
+                      lastName = {lastName} email={email}
+                      onDelete={() => onDelete(id)}
+                      onEdit={()=> onOpenModal()}
+                      />
+      )
+    })
+
+    if(rgr === false) {
+      return(
+        <div>
         <h2>Users</h2>
         <table className="table">
         <thead>
@@ -29,7 +48,7 @@ const UserList = ({data, onDelete}) =>{
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
           <th scope="col">Email</th>
-          <th scope="col">Action</th>
+          <th colSpan="2" scope="col" className="th_action">Action</th>
         </tr>
       </thead>
         <tbody>
@@ -37,9 +56,34 @@ const UserList = ({data, onDelete}) =>{
         </tbody>
         </table>
       </div>
+      )
+    }
+    return(
+      
+      <MaterialTable
+      title="Users"
+      columns={[
+        { title: 'Id', field: 'id' , type: 'numeric'},
+        { title: 'Name', field: 'firstName' },
+        { title: 'Surname', field: 'lastName' },
+        { title: 'Email', field: 'email' },
+        {
+          title: 'Birth Place',
+          field: 'birthCity',
+          lookup:  {111: 'Minsk',  222:'Polotsk',333: 'Vitebsk' },
+        },
+      ]}
+      data={this.state.users}        
+      options={{
+        filtering: true
+      }}
+    />
+
+     
+
     )
 }
-
+}
 const mapStateToProps = (state) => {
   return {
     data: state.tableReducer
@@ -48,7 +92,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDelete: (id) => dispatch(deletePerson(id))
+    onDelete: (id) => dispatch(deletePerson(id)),
+    onOpenModal: () => dispatch(editPersonTrue())
   }
 }
 

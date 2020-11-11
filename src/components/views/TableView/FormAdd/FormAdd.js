@@ -38,6 +38,9 @@ class FormAdd extends React.Component{
             <button type="submit" className="btn btn-danger addBtn">
             Add User
             </button>
+            <button type="submit" className="btn btn-danger acceptBtn" disabled>
+            Accept changes
+            </button>
             </div>
             <div className="col">
               <label htmlFor="firstNameInput" >First Name</label>

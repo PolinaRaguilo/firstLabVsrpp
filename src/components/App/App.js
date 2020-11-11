@@ -8,6 +8,7 @@ import {
 } from "react-router-dom"
 
 import AutorizationForm from '../views/Authorization/autorization/autorization';
+import ModalWindow from '../views/TableView/Modal/Modal';
 
 
 class App extends React.Component{
@@ -21,6 +22,7 @@ class App extends React.Component{
             <Route path="/users" component={TablePage}/>
             <Route render={() => <h2>Page not found 404</h2>}/>
         </Switch>
+        <ModalWindow />
         </BrowserRouter>
       
     )

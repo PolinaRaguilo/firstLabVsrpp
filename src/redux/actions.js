@@ -23,3 +23,15 @@ export const logIn = (logged) => {
     payload: logged
   }
 }
+
+export const editPersonTrue = () => {
+  return{
+    type:'EDIT_ITEM_TRUE',
+  }
+}
+
+export const editPersonFalse = () => {
+  return{
+    type:'EDIT_ITEM_FALSE',
+  }
+}

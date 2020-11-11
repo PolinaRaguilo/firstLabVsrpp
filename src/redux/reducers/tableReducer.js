@@ -1,8 +1,11 @@
 
+
 const initialState =[
   {id:1, firstName: 'Polina', lastName: 'Raguilo', email: 'polina2020@mail.ru'},
   {id:2, firstName: 'Julia', lastName: 'Ivanova', email: 'Julia2020@mail.ru'}
 ]
+
+
 
 
 
@@ -13,7 +16,8 @@ const tableReducer = (state=initialState, action) => {
         id: action.id,
         firstName: action.firstName, 
         lastName: action.lastName, 
-        email: action.email
+        email: action.email,
+        editing: false
       }]
       case 'DELETE_ITEM':
         return state.filter((user) => user.id !== action.id)
